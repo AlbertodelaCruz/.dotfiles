@@ -106,3 +106,9 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['pylint']
+
+" Testing
+command Test :!mamba -f documentation %
+command FindTests :!grep -lr  "\.<cword>" * | grep spec | xargs mambo
+noremap <F2> :Test<CR>
+noremap <F3> :FindTests<CR>
