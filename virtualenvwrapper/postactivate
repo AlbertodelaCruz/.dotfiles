@@ -1,0 +1,14 @@
+#!/bin/bash
+# This hook is sourced after every virtualenv is activated.
+
+# Add color to virtualenv variable
+PS1="\[\e[38;5;208m\](`basename \"$VIRTUAL_ENV\"`) \[\e[0m\]$_OLD_VIRTUAL_PS1"
+
+# Source project environment variables
+if [[ -f ./dev/env_develop  ]]; then
+    source ./dev/env_develop
+fi
+
+if [[ -f ./dev/bin/env_develop  ]]; then
+    source ./dev/bin/env_develop
+fi
