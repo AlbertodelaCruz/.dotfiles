@@ -34,6 +34,6 @@ clone_git_repo() {
 retrieve_inventory_servers() {
   server_list=$(cat ~/inventory | grep -E '"id":|"dnsAlias":' | awk -F'"' '{print $4}' | grep -v ':' | sed  s/,/\\n/g |fzf)
   #xdotool key shift+F10 r 2
-  ssh $server_list
+  ssh -t $server_list "sudo su -"
   #;sleep 1&&xdotool key shift+F10 r 1
 }
