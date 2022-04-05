@@ -126,7 +126,6 @@ fi
 
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-export PATH=$PATH:`cat $HOME/.Garmin/ConnectIQ/current-sdk.cfg`/bin
 
 # https://github.com/rupa/z
 . /usr/local/bin/z.sh
