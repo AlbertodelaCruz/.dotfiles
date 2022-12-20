@@ -24,6 +24,9 @@ alias c="retrieve_inventory_servers"
 alias n="nnn -da"
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
+alias deploy='docker run --rm --volume $(pwd):/tmp -ti aleasoluciones/deploy bash'
+alias mdv='glow -p'
+alias show_hosts='f(){ docker run --rm -ti aleasoluciones/deploy ansible "$1" -m shell -a hostname --list-hosts; };f'
 
 clone_git_repo() {
   repo_url=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/user/repos?per_page=200" | jq --raw-output ".[].ssh_url" | fzf)

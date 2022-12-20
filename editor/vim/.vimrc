@@ -25,11 +25,12 @@ Plugin 'tacahiroy/ctrlp-funky'
 "Plugin 'junegunn/fzf.vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'mgedmin/coverage-highlight.vim'
-"Plugin 'python-rope/ropevim'
+Plugin 'python-rope/ropevim'
 " Async completetion
 Plugin 'prabirshrestha/async.vim'
 Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'wellle/tmux-complete.vim'
+Plugin 'tpope/vim-fugitive'
 
 
 call vundle#end()
@@ -136,10 +137,10 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 let g:ale_python_flake8_options="--ignore=E501"
 
 " Testing
-command Test :!clear && mamba -f documentation %
+command Test :!clear && mamba -f documentation --enable-coverage %
 command FindTests :!grep -lr  "\.<cword>" * | grep spec | xargs mambo
 command FocusTest :s/with /with f/ | w
-command ExecuteTest :!clear && mamba -f documentation % && read -n1
+command ExecuteTest :!clear && mamba -f documentation --enable-coverage % && read -n1
 command UnFocusTest :s/with f/with / | w
 noremap <F2> :Test<CR>
 noremap <F3> :FocusTest<CR> :ExecuteTest <CR> :UnFocusTest<CR>
@@ -183,3 +184,6 @@ inoremap <silent><expr> <C-o>
   \ <SID>check_back_space() ? "\<TAB>" :
   \ asyncomplete#force_refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-o>" : "\<C-h>"
+
+" Key maps for git
+noremap <silent>gb :Git blame<CR>

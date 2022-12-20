@@ -125,7 +125,7 @@ if ! shopt -oq posix; then
 fi
 
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+source ~/.local/bin/virtualenvwrapper.sh
 
 # https://github.com/rupa/z
 . /usr/local/bin/z.sh
@@ -149,3 +149,12 @@ export LS_OPTIONS=--color=auto
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# Poetry
+export PATH="~/.virtualenvs/poetry/bin:$PATH"
