@@ -125,7 +125,8 @@ if ! shopt -oq posix; then
 fi
 
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source ~/.local/bin/virtualenvwrapper.sh
+#source ~/.local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
 
 # https://github.com/rupa/z
 . /usr/local/bin/z.sh
@@ -156,5 +157,24 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-# Poetry
-export PATH="~/.virtualenvs/poetry/bin:$PATH"
+export PYTHONSTARTUP=~/.pythonstartup
+export PATH=$PATH:/usr/local/go/bin
+
+export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+
+# define a function to change directory and source file if it exists
+cd() {
+  # call the original cd command with the arguments passed to this function
+  builtin cd "$@"
+
+  # check if the file exists in the new directory
+  if [ -f "dev/env_develop" ]; then
+    # source the file if it exists
+    source dev/env_develop
+  fi
+}
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

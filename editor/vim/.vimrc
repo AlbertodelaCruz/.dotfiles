@@ -25,7 +25,7 @@ Plugin 'tacahiroy/ctrlp-funky'
 "Plugin 'junegunn/fzf.vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'mgedmin/coverage-highlight.vim'
-Plugin 'python-rope/ropevim'
+"Plugin 'python-rope/ropevim'
 " Async completetion
 Plugin 'prabirshrestha/async.vim'
 Plugin 'prabirshrestha/asyncomplete.vim'
@@ -187,3 +187,6 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-o>" : "\<C-h>"
 
 " Key maps for git
 noremap <silent>gb :Git blame<CR>
+
+" Go goto definition remap
+autocmd FileType go nnoremap <buffer> <Leader>d :GoDef<CR>
